@@ -4,7 +4,6 @@ import { useRef, type MouseEvent, type ReactNode } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 const STRENGTH = 0.3;
-const SPRING = { stiffness: 300, damping: 30 };
 
 type MagneticButtonProps = {
   children: ReactNode;
@@ -22,12 +21,12 @@ export default function MagneticButton({
   "aria-label": ariaLabel,
 }: MagneticButtonProps) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const handleMouseMove = (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (reduceMotion) return;
     const bounds = ref.current?.getBoundingClientRect();
     if (!bounds) return;
@@ -48,24 +47,22 @@ export default function MagneticButton({
   const Component = href ? "a" : "button";
 
   return (
-    <Component
-      ref={ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>}
-      href={href}
-      onClick={onClick}
-      aria-label={ariaLabel}
+    <div
+      ref={ref}
       className={`relative inline-flex items-center justify-center gap-2 ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <motion.span
-        style={{
-          x: xSpring,
-          y: ySpring,
-          transition: { type: "spring", stiffness: 300, damping: 30 },
-        }}
-      >
-        {children}
+      <motion.span className="relative" style={{ x: xSpring, y: ySpring }}>
+        <Component
+          href={href}
+          onClick={onClick}
+          aria-label={ariaLabel}
+          className="relative"
+        >
+          {children}
+        </Component>
       </motion.span>
-    </Component>
+    </div>
   );
 }

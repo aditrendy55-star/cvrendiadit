@@ -9,7 +9,6 @@ type ScrollRevealProps = {
   delay?: number;
   stagger?: number;
   once?: boolean;
-  margin?: string;
 };
 
 export default function ScrollReveal({
@@ -18,10 +17,9 @@ export default function ScrollReveal({
   delay = 0,
   stagger = 0.08,
   once = true,
-  margin = "-100px",
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin });
+  const isInView = useInView(ref, { once });
 
   return (
     <motion.div
@@ -49,19 +47,16 @@ export default function ScrollReveal({
 }
 
 type ScrollRevealItemProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
 };
 
 export function ScrollRevealItem({
   children,
   className = "",
-  as: Component = "div",
 }: ScrollRevealItemProps) {
   return (
     <motion.div
-      as={Component}
       className={className}
       variants={{
         hidden: { opacity: 0, y: 16 },

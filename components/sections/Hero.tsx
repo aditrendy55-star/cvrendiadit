@@ -5,7 +5,7 @@ import Stagger from "@/components/motion/Stagger";
 import StaggerItem from "@/components/motion/StaggerItem";
 import TiltCard from "@/components/motion/TiltCard";
 import MagneticButton from "@/components/motion/MagneticButton";
-import ParallaxGlow from "@/components/motion/ParallaxGlow";
+import Spotlight from "@/components/motion/Spotlight";
 
 export default function Hero() {
   return (
@@ -16,9 +16,9 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <ParallaxGlow intensity={0.12} radius={350} color="rgba(251, 191, 36, 0.12)">
-        <div className="relative mx-auto w-full max-w-6xl px-6 pb-14 pt-14 sm:px-8 lg:pb-20 lg:pt-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+      <Spotlight size={300} color="rgba(251, 191, 36, 0.15)">
+        <div className="relative mx-auto w-full max-w-6xl px-6 pt-20 pb-14 sm:px-8 lg:pt-32 lg:pb-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
           <Stagger mount delay={0.05} stagger={0.08} amount={0}>
             <StaggerItem
               as="p"
@@ -36,7 +36,7 @@ export default function Hero() {
 
             <StaggerItem
               as="h1"
-              className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl"
+              className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground sm:text-6xl lg:text-[3rem]"
             >
               M. Rendi Adhitya Atmaja Putra
             </StaggerItem>
@@ -115,7 +115,7 @@ export default function Hero() {
           </a>
         </FadeIn>
       </div>
-      </ParallaxGlow>
+      </Spotlight>
     </section>
   );
 }

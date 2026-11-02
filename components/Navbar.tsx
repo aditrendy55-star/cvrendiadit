@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { EASE } from "@/components/motion/motion-utils";
+import Spotlight from "@/components/motion/Spotlight";
 
 const NAV_LINKS = [
   { href: "#profil", label: "Profil" },
@@ -66,68 +67,70 @@ export default function Navbar() {
         maskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 80%)',
         WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 80%)'
       }} />
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 sm:px-8">
-        <a
-          href="#beranda"
-          onClick={() => setOpen(false)}
-          className="flex items-center gap-3"
-        >
-          <span className="flex h-8 w-8 items-center justify-center border border-accent/60 font-mono text-xs font-bold text-accent">
-            MR
-          </span>
-          <span className="hidden text-sm font-medium tracking-tight text-foreground sm:block">
-            M. Rendi Adhitya A. P.
-          </span>
-        </a>
+      <Spotlight size={180} color="rgba(251, 191, 36, 0.15)">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 sm:px-8">
+          <a
+            href="#beranda"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3"
+          >
+            <span className="flex h-8 w-8 items-center justify-center border border-accent/60 font-mono text-xs font-bold text-accent">
+              MR
+            </span>
+            <span className="hidden text-sm font-medium tracking-tight text-foreground sm:block">
+              M. Rendi Adhitya A. P.
+            </span>
+          </a>
 
-        <nav className="hidden md:block" aria-label="Navigasi utama">
-          <ul className="flex items-center gap-1">
-            {NAV_LINKS.map((link) => {
-              const isActive = activeSection === link.href.slice(1);
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors hover:text-accent ${
-                      isActive ? "text-accent" : "text-zinc-400"
-                    }`}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute inset-x-3 -bottom-0.5 h-px bg-accent"
-                        transition={{ duration: 0.25, ease: EASE }}
-                        aria-hidden="true"
-                      />
-                    )}
-                  </a>
-                </li>
-              );
-            })}
-            <li className="ml-3">
-              <a
-                href="#kontak"
-                className="inline-flex h-9 items-center border border-accent bg-accent px-4 text-sm font-semibold text-zinc-950 transition-colors hover:border-accent-strong hover:bg-accent-strong"
-              >
-                Hubungi
-              </a>
-            </li>
-          </ul>
-        </nav>
+          <nav className="hidden md:block" aria-label="Navigasi utama">
+            <ul className="flex items-center gap-1">
+              {NAV_LINKS.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`relative px-3 py-2 text-sm transition-colors hover:text-accent ${
+                        isActive ? "text-accent" : "text-zinc-400"
+                      }`}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute inset-x-3 -bottom-0.5 h-px bg-accent"
+                          transition={{ duration: 0.25, ease: EASE }}
+                          aria-hidden="true"
+                        />
+                      )}
+                    </a>
+                  </li>
+                );
+              })}
+              <li className="ml-3">
+                <a
+                  href="#kontak"
+                  className="inline-flex h-9 items-center border border-accent bg-accent px-4 text-sm font-semibold text-zinc-950 transition-colors hover:border-accent-strong hover:bg-accent-strong"
+                >
+                  Hubungi
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className="nav-toggle-mobile flex h-10 w-10 items-center justify-center border border-line text-foreground md:hidden"
-          aria-expanded={open}
-          aria-controls="menu-mobile"
-          aria-label={open ? "Tutup menu" : "Buka menu"}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            className="nav-toggle-mobile flex h-10 w-10 items-center justify-center border border-line text-foreground md:hidden"
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </Spotlight>
 
       <motion.nav
         id="menu-mobile"

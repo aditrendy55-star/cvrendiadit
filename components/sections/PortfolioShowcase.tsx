@@ -4,7 +4,6 @@ import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
 import DeviceFrame from "@/components/ui/DeviceFrame";
 import DrawingsCoverflow from "@/components/sections/DrawingsCoverflow";
-import ParallaxGlow from "@/components/motion/ParallaxGlow";
 
 type TabKey = "drawings" | "digital" | "tools";
 type Frame = "sheet" | "browser" | "panel";
@@ -88,8 +87,8 @@ function StaticFrame({ item }: { item: PortfolioItem }) {
         </div>
       </DeviceFrame>
       <div className="mt-5 text-center">
-        <h3 className="text-base font-semibold text-foreground sm:text-lg">{item.title}</h3>
-        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+        <h3 className="text-lg font-semibold text-foreground sm:text-xl">{item.title}</h3>
+        <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400">
           {item.meta}
         </p>
       </div>
@@ -99,17 +98,17 @@ function StaticFrame({ item }: { item: PortfolioItem }) {
 
 export default function PortfolioShowcase() {
   return (
-    <Section id="portofolio" className="bg-grid">
+    <Section id="portofolio" className="bg-grid px-4 sm:px-6" padding="tight">
       <SectionHeading
         index="04"
         eyebrow="Portofolio Showcase"
         title="Hasil kerja dalam frame-nya masing-masing."
         description="Gambar teknik, proyek digital, dan tools yang dipakai sehari-hari. Gambar saat ini masih placeholder."
         align="center"
+        size="large"
       />
 
-      <ParallaxGlow intensity={0.1} radius={400} color="rgba(251, 191, 36, 0.1)">
-        <div className="pf-root relative isolate">
+      <div className="pf-root relative isolate">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
@@ -121,7 +120,7 @@ export default function PortfolioShowcase() {
         <div
           role="group"
           aria-label="Kategori portofolio"
-          className="group mx-auto flex w-fit rounded-full border border-white/10 p-1"
+          className="group mx-auto flex w-fit rounded-full border border-white/10 p-1.5"
         >
           {TABS.map((tab) => (
             <Fragment key={tab.key}>
@@ -136,9 +135,9 @@ export default function PortfolioShowcase() {
                 htmlFor={`pf-${tab.key}`}
                 id={`tab-${tab.key}`}
                 aria-controls={`panel-${tab.key}`}
-                className="relative inline-flex h-9 cursor-pointer items-center justify-center rounded-full px-3 transition-colors sm:px-5"
+                className="relative inline-flex h-11 cursor-pointer items-center justify-center rounded-full px-5 transition-colors sm:px-7"
               >
-                <span className="relative font-mono text-[11px] uppercase tracking-[0.15em] text-zinc-400 transition-colors group-hover:text-zinc-200">
+                <span className="relative font-mono text-xs uppercase tracking-[0.15em] text-zinc-400 transition-colors group-hover:text-zinc-200 sm:text-sm">
                   {tab.label}
                 </span>
               </label>
@@ -146,7 +145,7 @@ export default function PortfolioShowcase() {
           ))}
         </div>
 
-        <div className="pf-panels mx-auto mt-6 max-w-4xl pt-4 pb-12">
+        <div className="pf-panels mx-auto mt-2 max-w-7xl pt-4 pb-0 sm:pb-2">
           {TABS.map((tab) => (
             <div
               key={tab.key}
@@ -162,8 +161,7 @@ export default function PortfolioShowcase() {
             </div>
           ))}
         </div>
-      </div>
-      </ParallaxGlow>
+            </div>
     </Section>
   );
 }

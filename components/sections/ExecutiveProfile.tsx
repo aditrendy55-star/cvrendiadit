@@ -52,15 +52,16 @@ export default function ExecutiveProfile() {
       <ScrollReveal delay={0.15} stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {PILARS.map((pilar) => (
           <ScrollRevealItem
-            as="li"
             key={pilar.word}
             className="group border border-line bg-surface/40 p-6 transition-colors hover:border-accent"
           >
-            <Counter target={pilar.count} suffix={pilar.suffix} />
-            <p className="mt-2 text-sm text-zinc-400">({pilar.note})</p>
-            <p className="mt-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-              {pilar.word}
-            </p>
+            <div>
+              <Counter target={pilar.count} suffix={pilar.suffix} />
+              <p className="mt-2 text-sm text-zinc-400">({pilar.note})</p>
+              <p className="mt-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                {pilar.word}
+              </p>
+            </div>
           </ScrollRevealItem>
         ))}
       </ScrollReveal>

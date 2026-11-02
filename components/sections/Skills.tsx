@@ -42,7 +42,7 @@ const SKILL_GROUPS: SkillGroup[] = [
 
 export default function Skills() {
   return (
-    <Section id="keahlian">
+    <Section id="keahlian" padding="compact">
       <SectionHeading
         index="05"
         eyebrow="Keahlian"

@@ -1,4 +1,4 @@
-import ScrollReveal, { ScrollRevealItem } from "@/components/motion/ScrollReveal";
+import FadeIn from "@/components/motion/FadeIn";
 
 type SectionHeadingProps = {
   index?: string;
@@ -6,6 +6,7 @@ type SectionHeadingProps = {
   title: string;
   description?: string;
   align?: "left" | "center";
+  size?: "default" | "large";
 };
 
 export default function SectionHeading({
@@ -14,24 +15,32 @@ export default function SectionHeading({
   title,
   description,
   align = "left",
+  size = "default",
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "items-center text-center" : "items-start text-left";
+  const titleSize =
+    size === "large"
+      ? "text-3xl font-extrabold tracking-tighter sm:text-5xl lg:text-6xl"
+      : "text-2xl font-bold tracking-tight sm:text-3xl";
+  const marginBottom = size === "large" ? "mb-2 lg:mb-4" : "mb-8 lg:mb-12";
 
   return (
-    <ScrollReveal delay={0.1} stagger={0.1} className={`mb-8 flex flex-col lg:mb-12 ${alignment}`}>
-      <ScrollRevealItem as="p" className="font-mono text-[11px] uppercase tracking-[0.35em] text-accent">
+    <FadeIn
+      as="header"
+      className={`${marginBottom} flex flex-col ${alignment}`}
+      amount={0.35}
+    >
+      <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-accent">
         {index && <span className="text-foreground/40">{index} / </span>}
         {eyebrow}
-      </ScrollRevealItem>
-      <ScrollRevealItem as="h2" className="mt-3 max-w-3xl text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+      </p>
+      <h2 className={`mt-3 max-w-4xl ${titleSize} text-foreground`}>
         {title}
-      </ScrollRevealItem>
-      <ScrollRevealItem as="div" className="mt-4 h-px w-16 bg-accent" aria-hidden="true" />
+      </h2>
+      <div className="mt-4 h-px w-16 bg-accent" aria-hidden="true" />
       {description && (
-        <ScrollRevealItem as="p" className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
-          {description}
-        </ScrollRevealItem>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">{description}</p>
       )}
-    </ScrollReveal>
+    </FadeIn>
   );
 }

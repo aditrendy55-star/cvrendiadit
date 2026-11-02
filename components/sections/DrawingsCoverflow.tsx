@@ -96,19 +96,21 @@ function DesktopStrip({ items }: Props) {
               trigger,
               start: "top 60%",
               end: "+=900",
-              scrub: 1.5,
+              scrub: 0.5,
             },
           });
 
           tl.fromTo(
             frame,
-            { rotationX: 34, scale: 0.96, transformOrigin: "50% 100%" },
+            { rotationX: 22, scale: 0.96, transformOrigin: "50% 100%" },
             {
               rotationX: 0,
               scale: 1,
               transformOrigin: "50% 100%",
               ease: "sine.inOut",
               duration: 1,
+              onStart: () => frame.classList.add("gsap-animating"),
+              onComplete: () => frame.classList.remove("gsap-animating"),
             },
             0,
           );
@@ -131,7 +133,7 @@ function DesktopStrip({ items }: Props) {
   }, []);
 
   return (
-    <div ref={wrapRef} className="[perspective:2500px]">
+    <div ref={wrapRef} className="[perspective:1000px]">
       <DeviceFrame className="[transform-origin:bottom]">
         <div className="flex h-full w-full gap-2">
           {items.map((item, i) => {
@@ -141,16 +143,15 @@ function DesktopStrip({ items }: Props) {
               <motion.button
                 key={item.title}
                 type="button"
-                layout
                 transition={transition}
                 onClick={() => setIndex(i)}
                 aria-label={`Tampilkan ${item.title}`}
                 aria-current={isActive ? "true" : "false"}
-                className={`relative h-full overflow-hidden border border-white/10 ${
+                className={`relative h-full overflow-hidden border border-white/10 transition-all duration-500 ease-out ${
                   isActive ? "flex-1 cursor-default" : "w-16 shrink-0 cursor-pointer"
                 }`}
               >
-                <motion.div layout className="absolute inset-0">
+                <motion.div className="absolute inset-0">
                   <Image
                     src={item.image}
                     alt={item.alt}

@@ -67,19 +67,31 @@ body {
   }
 }
 
+.gsap-animating {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 .pf-panels {
   display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  transition:
+    grid-template-rows 0.7s ease-out,
+    grid-template-columns 0.7s ease-out;
 }
 
 .pf-panel {
   grid-area: 1 / 1;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  transform: translateY(8px) scale(0.95);
+  filter: sepia(20%);
   transition:
-    opacity 0.18s ease,
-    transform 0.18s ease,
-    visibility 0s linear 0.18s;
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    visibility 0s linear 0.18s,
+    filter 0.5s ease;
 }
 
 .pf-root:has(#pf-drawings:checked) #panel-drawings,
@@ -87,7 +99,8 @@ body {
 .pf-root:has(#pf-tools:checked) #panel-tools {
   opacity: 1;
   visibility: visible;
-  transform: none;
+  transform: translateY(0) scale(1);
+  filter: sepia(0%);
   transition-delay: 0s;
 }
 
