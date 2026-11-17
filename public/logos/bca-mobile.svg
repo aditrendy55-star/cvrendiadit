@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BCA mobile">
+  <rect width="64" height="64" rx="14" fill="#0878c9"/>
+  <path fill="#fff" d="M17 17h30v6H17zM17 28h23v5H17zM17 39h30v6H17z"/>
+  <text x="32" y="56" fill="#fff" font-family="Arial,sans-serif" font-size="8" font-weight="700" text-anchor="middle">BCA mobile</text>
+</svg>

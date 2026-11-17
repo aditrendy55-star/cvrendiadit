@@ -70,7 +70,7 @@ export default function Contact() {
           />
 
           <SectionHeading
-            index="07"
+            index="05"
             eyebrow="Contact"
             title="Punya proyek? Mari wujudkan bersama."
             description="Terbuka untuk kolaborasi proyek operasional, e-commerce, pengembangan website, maupun gambar teknik. Kirim brief-nya, kita diskusikan."

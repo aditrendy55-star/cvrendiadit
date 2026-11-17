@@ -29,6 +29,8 @@ export default function SectionHeading({
       as="header"
       className={`${marginBottom} flex flex-col ${alignment}`}
       amount={0.35}
+      duration={0.75}
+      delay={0.12}
     >
       <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-accent">
         {index && <span className="text-foreground/40">{index} / </span>}

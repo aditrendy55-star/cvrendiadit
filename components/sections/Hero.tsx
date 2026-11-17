@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import FadeIn from "@/components/motion/FadeIn";
-import Stagger from "@/components/motion/Stagger";
-import StaggerItem from "@/components/motion/StaggerItem";
 import TiltCard from "@/components/motion/TiltCard";
 import MagneticButton from "@/components/motion/MagneticButton";
 import Spotlight from "@/components/motion/Spotlight";
+import TypewriterText from "@/components/motion/TypewriterText";
 
 export default function Hero() {
   return (
@@ -19,47 +18,54 @@ export default function Hero() {
       <Spotlight size={300} color="rgba(251, 191, 36, 0.15)">
         <div className="relative mx-auto w-full max-w-6xl px-6 pt-20 pb-14 sm:px-8 lg:pt-32 lg:pb-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
-          <Stagger mount delay={0.05} stagger={0.08} amount={0}>
-            <StaggerItem
-              as="p"
-              className="text-sm uppercase tracking-widest text-accent"
-            >
-              Hello, I am
-            </StaggerItem>
+          <div>
+            <FadeIn mount delay={0.08} className="text-sm uppercase tracking-widest text-accent">
+              <TypewriterText text="Hello, I am" startDelay={120} speed={85} />
+            </FadeIn>
 
-            <StaggerItem
-              as="p"
+            <FadeIn
+              mount
+              delay={1.2}
+              fromX={-28}
+              fromY={0}
               className="mt-4 font-mono text-[11px] uppercase tracking-[0.35em] text-zinc-400"
             >
               Operations · Digital · Technical Drafting
-            </StaggerItem>
+            </FadeIn>
 
-            <StaggerItem
-              as="h1"
+            <FadeIn
+              mount
+              delay={1.8}
               className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground sm:text-6xl lg:text-[3rem]"
             >
-              M. Rendi Adhitya Atmaja Putra
-            </StaggerItem>
+              <TypewriterText
+                text="M. Rendi Adhitya Atmaja Putra"
+                startDelay={1_900}
+                speed={58}
+              />
+            </FadeIn>
 
-            <StaggerItem
-              as="p"
+            <FadeIn
+              mount
+              delay={3.9}
               className="mt-6 border-l-2 border-accent pl-4 text-base font-medium text-zinc-300 sm:text-lg"
             >
               <span className="text-accent">Operations &amp; Digital Specialist</span>
               <span className="text-zinc-400"> | </span>
               Technical Drafter
-            </StaggerItem>
+            </FadeIn>
 
-            <StaggerItem
-              as="p"
+            <FadeIn
+              mount
+              delay={4.05}
               className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg"
             >
               Menerjemahkan kebutuhan teknis dan operasional menjadi hasil kerja yang
               terstruktur — dari gambar teknik, pengelolaan e-commerce, hingga pengembangan
               website.
-            </StaggerItem>
+            </FadeIn>
 
-            <StaggerItem as="div" className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <FadeIn mount delay={4.2} className="mt-8 flex flex-col gap-3 sm:flex-row">
               <MagneticButton
                 href="#portofolio"
                 className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-accent-strong"
@@ -74,10 +80,15 @@ export default function Hero() {
               >
                 Hubungi Saya
               </a>
-            </StaggerItem>
-          </Stagger>
+            </FadeIn>
+          </div>
 
-          <FadeIn mount delay={0.45} className="relative mx-auto w-full max-w-sm lg:max-w-[26rem]">
+          <FadeIn
+            mount
+            delay={3.9}
+            fromY={-48}
+            className="relative mx-auto w-full max-w-sm lg:max-w-[26rem]"
+          >
             <TiltCard>
               <div className="relative border border-line bg-surface p-3">
                 <div className="aspect-[4/5] w-full overflow-hidden">

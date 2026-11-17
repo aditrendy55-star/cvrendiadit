@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Notepad">
+  <path fill="#64748b" d="M15 7h34a4 4 0 0 1 4 4v42a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4Z"/>
+  <path fill="#e2e8f0" d="M19 15h26v34H19z"/>
+  <path fill="#94a3b8" d="M24 22h16v3H24zm0 8h16v3H24zm0 8h11v3H24z"/>
+</svg>

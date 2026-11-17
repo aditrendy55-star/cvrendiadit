@@ -9,10 +9,8 @@ const SECTION_IDS = [
   "beranda",
   "profil",
   "kompetensi",
-  "pengalaman",
   "portofolio",
   "keahlian",
-  "pendidikan",
   "kontak",
 ];
 
@@ -23,7 +21,9 @@ export default function ScrollTools() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       const y = window.scrollY;
       setVisible(y > 300);
 
@@ -35,10 +35,17 @@ export default function ScrollTools() {
       });
       setActiveIndex(current);
     };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
 
-    onScroll();
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   const scrollTo = (index: number) => {

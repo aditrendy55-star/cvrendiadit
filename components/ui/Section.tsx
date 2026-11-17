@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { KeyboardEventHandler, ReactNode } from "react";
 
 type SectionProps = {
   id: string;
@@ -7,6 +7,8 @@ type SectionProps = {
   containerClassName?: string;
   withBorder?: boolean;
   padding?: "default" | "compact" | "tight";
+  onKeyDown?: KeyboardEventHandler<HTMLElement>;
+  tabIndex?: number;
 };
 
 export default function Section({
@@ -16,6 +18,8 @@ export default function Section({
   containerClassName = "",
   withBorder = true,
   padding = "default",
+  onKeyDown,
+  tabIndex,
 }: SectionProps) {
   const paddingClass =
     padding === "tight"
@@ -26,6 +30,8 @@ export default function Section({
   return (
     <section
       id={id}
+      onKeyDown={onKeyDown}
+      tabIndex={tabIndex}
       className={`scroll-mt-24 ${withBorder ? "border-t border-line/60" : ""} ${className}`}
     >
       <div

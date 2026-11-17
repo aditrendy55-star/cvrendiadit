@@ -9,10 +9,8 @@ import Spotlight from "@/components/motion/Spotlight";
 const NAV_LINKS = [
   { href: "#profil", label: "Profil" },
   { href: "#kompetensi", label: "Kompetensi" },
-  { href: "#pengalaman", label: "Pengalaman" },
   { href: "#portofolio", label: "Portofolio" },
   { href: "#keahlian", label: "Keahlian" },
-  { href: "#pendidikan", label: "Pendidikan" },
   { href: "#kontak", label: "Kontak" },
 ];
 
@@ -25,10 +23,22 @@ export default function Navbar() {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 8);
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {

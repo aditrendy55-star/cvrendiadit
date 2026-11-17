@@ -56,7 +56,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <a className="skip-link" href="#main-content">
+          Lewati ke konten utama
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

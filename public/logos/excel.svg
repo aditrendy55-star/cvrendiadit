@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Microsoft Excel">
+  <rect width="64" height="64" rx="8" fill="#217346"/>
+  <path fill="#fff" d="M18 18h28v28H18z" opacity=".22"/>
+  <path fill="#fff" d="m23 24 6 8-6 8h5l4-5.3 4 5.3h5l-6-8 6-8h-5l-4 5.3-4-5.3z"/>
+</svg>

@@ -32,7 +32,7 @@ export default function Stagger({
       initial="hidden"
       {...(mount
         ? { animate: "show" }
-        : { whileInView: "show", viewport: { once: true, amount } })}
+        : { whileInView: "show", viewport: { once: false, amount } })}
     >
       {children}
     </Element>

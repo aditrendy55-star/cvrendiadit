@@ -33,6 +33,31 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border: 1px solid var(--accent);
+  background: var(--background);
+  padding: 0.75rem 1rem;
+  color: var(--accent);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--background);
@@ -90,54 +115,288 @@ body {
   -webkit-backdrop-filter: none !important;
 }
 
-.pf-panels {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr;
-  transition:
-    grid-template-rows 0.7s ease-out,
-    grid-template-columns 0.7s ease-out;
+[data-performance="lite"] .backdrop-blur-lg,
+[data-performance="lite"] .backdrop-blur-md,
+[data-performance="lite"] .backdrop-blur-sm,
+[data-performance="lite"] .backdrop-blur-\[2px\],
+[data-performance="lite"] .blur-3xl,
+[data-performance="lite"] .blur-\[120px\],
+[data-performance="lite"] .blur-\[60px\] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+[data-performance="lite"] .blueprint-grid {
+  opacity: 0.12;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skill-meter-fill {
+    animation: skill-meter-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes skill-meter-in {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 .pf-panel {
-  grid-area: 1 / 1;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px) scale(0.95);
-  filter: sepia(20%);
+  min-height: 0;
+  min-width: 0;
+}
+
+.pf-showcase-perspective {
+  perspective: 1200px;
+}
+
+#portofolio header h2 {
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4.2vw, 3.75rem);
+  line-height: 1.04;
+  background: linear-gradient(180deg, #fafafa 20%, #b8b8b8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#portofolio header {
+  margin-bottom: 1rem;
+}
+
+#portofolio header > div {
+  margin-top: 0.75rem;
+}
+
+#portofolio header > p:last-child {
+  margin-top: 1rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.5;
+}
+
+.pf-showcase-shell {
+  --pf-rim-width: 14px;
+  --pf-inner-radius: 28px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: calc(var(--pf-inner-radius) + var(--pf-rim-width));
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.pf-showcase-shell::before {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--pf-rim-width) rgba(255, 255, 255, 0.02);
+  content: "";
+}
+
+.pf-showcase-shell > .pf-controls-row,
+.pf-showcase-shell > .pf-panels {
+  position: relative;
+  z-index: 1;
+}
+
+.pf-category-tabs {
+  min-height: 3rem;
+}
+
+.pf-panels {
+  height: clamp(31rem, 51vw, 40rem);
+  min-width: 0;
+  padding: 0 1.75rem 0.5rem;
+}
+
+.pf-panel {
+  height: 100%;
+}
+
+.executive-profile-carousel {
+  min-height: max(1079px, calc(1432px - 55.2vw));
+}
+
+@media (min-width: 768px) {
+  .executive-profile-carousel {
+    height: 636px;
+    min-height: 636px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 819px) {
+  .executive-profile-carousel {
+    height: 720px;
+    min-height: 720px;
+  }
+}
+
+.pf-selection-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.pf-project-gallery {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.pf-project-gallery-column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.pf-project-card {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 1.125rem;
+  background:
+    radial-gradient(110% 100% at 0% 0%, rgba(255, 255, 255, 0.075), transparent 62%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.018) 58%, rgba(255, 255, 255, 0.03));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 16px 36px -28px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease,
-    visibility 0s linear 0.18s,
-    filter 0.5s ease;
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    background-color 300ms ease,
+    transform 300ms ease;
 }
 
-.pf-root:has(#pf-drawings:checked) #panel-drawings,
-.pf-root:has(#pf-digital:checked) #panel-digital,
-.pf-root:has(#pf-tools:checked) #panel-tools {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  filter: sepia(0%);
-  transition-delay: 0s;
+.pf-project-card::before {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), transparent 32%, transparent 74%, rgba(255, 255, 255, 0.02));
+  content: "";
 }
 
-.pf-root:has(#pf-drawings:checked) label[for="pf-drawings"],
-.pf-root:has(#pf-digital:checked) label[for="pf-digital"],
-.pf-root:has(#pf-tools:checked) label[for="pf-tools"] {
-  background-color: var(--accent);
-  border-color: var(--accent);
+.pf-project-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 20px 42px -28px rgba(0, 0, 0, 0.95);
 }
 
-.pf-root:has(#pf-drawings:checked) label[for="pf-drawings"] > span,
-.pf-root:has(#pf-digital:checked) label[for="pf-digital"] > span,
-.pf-root:has(#pf-tools:checked) label[for="pf-tools"] > span {
-  color: var(--background);
+.pf-project-card-image,
+.pf-project-card-content {
+  position: relative;
+  z-index: 2;
 }
 
-.pf-root:has(#pf-drawings:focus-visible) label[for="pf-drawings"],
-.pf-root:has(#pf-digital:focus-visible) label[for="pf-digital"],
-.pf-root:has(#pf-tools:focus-visible) label[for="pf-tools"] {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+.pf-project-card-image {
+  aspect-ratio: 16 / 9;
+}
+
+.pf-project-card--tall .pf-project-card-image {
+  aspect-ratio: 4 / 3;
+}
+
+.pf-project-card--short .pf-project-card-image {
+  aspect-ratio: 16 / 10;
+}
+
+.pf-project-card-content {
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 72%);
+}
+
+@media (min-width: 640px) {
+  .pf-project-gallery-column {
+    gap: 1rem;
+  }
+}
+
+.pf-accordion {
+  scrollbar-width: none;
+}
+
+.pf-accordion::-webkit-scrollbar {
+  display: none;
+}
+
+.pf-embedded-drawing-frame {
+  aspect-ratio: auto;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (min-width: 1024px) {
+  .pf-showcase-shell {
+    padding: 2.5rem 1.5rem 1.5rem;
+    scale: 0.9;
+  }
+}
+
+@media (max-width: 767px) {
+  .pf-showcase-shell {
+    --pf-rim-width: 8px;
+    padding-bottom: 0.75rem;
+  }
+
+  .pf-category-tabs {
+    width: 100%;
+  }
+
+  .pf-category-tabs button {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 0.5rem;
+  }
+
+  .pf-category-tabs button span {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+  }
+
+  .pf-panels {
+    height: clamp(26.5rem, 112vw, 33rem);
+    padding: 0 1.25rem 0.25rem;
+  }
+
+}
+
+[data-performance="lite"] .pf-showcase-shell {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-performance="lite"] .pf-project-card {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
