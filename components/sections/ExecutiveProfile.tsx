@@ -139,7 +139,7 @@ function IdCard({
   const lanyardRef = useRef<SVGSVGElement>(null);
   const lanyardWidth = useMotionValue(100);
   const lanyardHeight = useMotionValue(380);
-  const lanyardAnchorY = useMotionValue(110);
+  const lanyardAnchorY = useMotionValue(140);
   const springX = useSpring(x, { stiffness: 420, damping: 32, mass: 0.5 });
   const springY = useSpring(y, { stiffness: 420, damping: 32, mass: 0.5 });
 
@@ -182,7 +182,7 @@ function IdCard({
   );
 
   return (
-    <div className="relative min-h-[320px] select-none sm:min-h-[350px] md:min-h-[390px]">
+    <div className="relative min-h-[380px] select-none md:min-h-[390px]">
       <motion.div
         initial={{ opacity: 0 }}
         animate={visualActive ? { opacity: 1 } : { opacity: 0 }}
@@ -193,7 +193,7 @@ function IdCard({
         <svg
           ref={lanyardRef}
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full [--lanyard-attach-y:100px] md:[--lanyard-attach-y:118px]"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full [--lanyard-attach-y:140px] md:[--lanyard-attach-y:118px]"
           viewBox="0 0 100 380"
           preserveAspectRatio="none"
         >
@@ -244,7 +244,7 @@ function IdCard({
           onAnimationComplete={() => {
             if (visualActive) onIntroComplete?.();
           }}
-          className="absolute left-1/2 top-[100px] z-10 -translate-x-1/2 md:top-[118px]"
+          className="absolute left-1/2 top-[140px] z-10 -translate-x-1/2 md:top-[118px]"
         >
         <motion.div
           drag
@@ -353,7 +353,7 @@ function PillarsStats({ active }: { active: boolean }) {
     <motion.div
       initial={false}
       animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      className="col-span-full mt-7 md:mt-5"
+      className="col-span-full mt-auto md:mt-5"
       aria-label="Statistik"
     >
       <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-line ring-1 ring-line sm:grid-cols-4">
@@ -399,7 +399,7 @@ function AboutMeSlide({
   }, [introActive]);
 
   return (
-    <div className="relative grid gap-6 md:translate-y-10 md:grid-cols-[1.4fr_1fr] md:items-center md:gap-x-8 md:gap-y-6">
+    <div className="relative flex min-h-full flex-1 flex-col gap-6 md:grid md:translate-y-10 md:grid-cols-[1.4fr_1fr] md:items-center md:gap-x-8 md:gap-y-6">
       <div className="pt-4 md:flex md:h-full md:flex-col md:pl-3 md:pt-13">
         <motion.p
           initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
@@ -425,7 +425,7 @@ function AboutMeSlide({
           animate={introActive ? { opacity: 1, y: 0 } : { opacity: 0, y: reduceMotion ? 0 : 8 }}
           transition={{ delay: introActive ? 0.68 : 0, duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400 lg:mt-8">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400 sm:text-[10px] sm:tracking-[0.18em] lg:mt-8">
             {TAGS.map((tag) => (
               <span key={tag} className="inline-flex items-center gap-2">
                 <span className="h-px w-4 bg-accent/40" />
@@ -709,7 +709,12 @@ export default function ExecutiveProfile() {
 
   return (
     <Section id="profil" padding="compact" onKeyDown={handleKeyDown} tabIndex={0}>
-      <SectionHeading index="01" eyebrow="Profil Eksekutif" title="Lintas bidang, satu cara kerja: terstruktur dan dapat digunakan." />
+      <SectionHeading
+        index="01"
+        eyebrow="Profil Eksekutif"
+        title="Lintas bidang, satu cara kerja: terstruktur dan dapat digunakan."
+        mobileCompact
+      />
 
       <motion.div
         ref={carouselRef}
@@ -724,8 +729,8 @@ export default function ExecutiveProfile() {
           delay: reduceMotion ? 0 : 0.12,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className={`executive-profile-carousel glass-strong relative mx-auto w-full overflow-hidden rounded-2xl p-5 sm:p-7 lg:p-8 ${
-          activeSlide.key === "hobbies" ? "flex flex-col" : ""
+        className={`executive-profile-carousel glass-strong relative mx-auto flex w-full flex-col overflow-hidden rounded-2xl p-5 sm:p-7 lg:p-8 ${
+          activeSlide.key === "hobbies" ? "" : "md:block"
         }`}
       >
         <div aria-hidden className="blueprint-grid pointer-events-none absolute inset-0 opacity-25" />
@@ -733,7 +738,9 @@ export default function ExecutiveProfile() {
         <div aria-hidden className="absolute -top-px left-12 right-12 h-px hairline" />
 
         <div
-          className={`relative ${activeSlide.key === "hobbies" ? "flex flex-1 flex-col" : ""}`}
+          className={`relative flex flex-1 flex-col ${
+            activeSlide.key === "hobbies" ? "" : "md:block"
+          }`}
           onClickCapture={stopAutoplay}
         >
           <MotionConfig reducedMotion={reduceMotion ? "user" : "never"}>
@@ -771,7 +778,9 @@ export default function ExecutiveProfile() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className={activeSlide.key === "hobbies" ? "flex flex-1 flex-col" : undefined}
+                className={`h-full flex flex-1 flex-col ${
+                  activeSlide.key === "hobbies" ? "" : "md:block"
+                }`}
                 transition={{
                   duration: reduceMotion ? 0 : isEducationSlide ? 0.48 : 0.34,
                   ease: [0.22, 1, 0.36, 1],

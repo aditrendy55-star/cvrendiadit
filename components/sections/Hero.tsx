@@ -16,7 +16,7 @@ export default function Hero() {
       />
 
       <Spotlight size={300} color="rgba(251, 191, 36, 0.15)">
-        <div className="relative mx-auto w-full max-w-6xl px-6 pt-20 pb-14 sm:px-8 lg:pt-32 lg:pb-20">
+        <div className="relative mx-auto w-full max-w-6xl px-6 pt-10 pb-12 sm:px-8 sm:pt-20 sm:pb-14 lg:pt-32 lg:pb-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
           <div>
             <FadeIn mount delay={0.08} className="text-sm uppercase tracking-widest text-accent">
@@ -26,9 +26,9 @@ export default function Hero() {
             <FadeIn
               mount
               delay={1.2}
-              fromX={-28}
+              fromX={-12}
               fromY={0}
-              className="mt-4 font-mono text-[11px] uppercase tracking-[0.35em] text-zinc-400"
+              className="mt-3 font-mono text-[9px] uppercase tracking-[0.18em] text-zinc-400 sm:mt-4 sm:text-[11px] sm:tracking-[0.35em]"
             >
               Operations · Digital · Technical Drafting
             </FadeIn>
@@ -36,7 +36,7 @@ export default function Hero() {
             <FadeIn
               mount
               delay={1.8}
-              className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground sm:text-6xl lg:text-[3rem]"
+              className="mt-4 text-3xl font-extrabold leading-[1.05] tracking-tighter text-foreground sm:mt-5 sm:text-6xl lg:text-[3rem]"
             >
               <TypewriterText
                 text="M. Rendi Adhitya Atmaja Putra"
@@ -48,7 +48,7 @@ export default function Hero() {
             <FadeIn
               mount
               delay={3.9}
-              className="mt-6 border-l-2 border-accent pl-4 text-base font-medium text-zinc-300 sm:text-lg"
+              className="mt-5 border-l-2 border-accent pl-4 text-base font-medium text-zinc-300 sm:mt-6 sm:text-lg"
             >
               <span className="text-accent">Operations &amp; Digital Specialist</span>
               <span className="text-zinc-400"> | </span>
@@ -58,14 +58,14 @@ export default function Hero() {
             <FadeIn
               mount
               delay={4.05}
-              className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg"
+              className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:mt-6 sm:text-lg"
             >
               Menerjemahkan kebutuhan teknis dan operasional menjadi hasil kerja yang
               terstruktur — dari gambar teknik, pengelolaan e-commerce, hingga pengembangan
               website.
             </FadeIn>
 
-            <FadeIn mount delay={4.2} className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <FadeIn mount delay={4.2} className="mt-6 flex flex-col items-start gap-3 sm:mt-8 sm:flex-row">
               <MagneticButton
                 href="#portofolio"
                 className="inline-flex h-12 items-center justify-center gap-2 bg-accent px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-accent-strong"

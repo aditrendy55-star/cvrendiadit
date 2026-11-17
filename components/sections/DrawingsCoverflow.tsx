@@ -71,6 +71,68 @@ function Caption({ item }: { item: DrawingsItem }) {
   );
 }
 
+function MobileStack({ items }: Props) {
+  const [index, setIndex] = useState(0);
+  const transition = useSnapTransition();
+
+  return (
+    <div
+      role="list"
+      aria-label="Gambar kerja pilihan"
+      className="pf-vertical-card-stack pf-drawing-stack h-full min-h-0"
+    >
+      {items.map((item, itemIndex) => {
+        const isActive = itemIndex === index;
+
+        return (
+          <motion.article
+            key={item.title}
+            layout
+            transition={transition}
+            role="listitem"
+            data-stack-active={isActive}
+            className="pf-drawing-stack-card"
+          >
+            <Image
+              src={item.image}
+              alt={item.alt}
+              fill
+              sizes="(max-width: 767px) 90vw, 100vw"
+              className={`object-cover transition-transform duration-500 ${
+                isActive ? "scale-100" : "scale-110"
+              }`}
+            />
+            <div
+              aria-hidden="true"
+              className={`absolute inset-0 ${
+                isActive
+                  ? "bg-gradient-to-t from-black/90 via-black/15 to-black/5"
+                  : "bg-black/45"
+              }`}
+            />
+            <button
+              type="button"
+              aria-label={`Tampilkan ${item.title}`}
+              aria-pressed={isActive}
+              onClick={() => setIndex(itemIndex)}
+              className="absolute inset-0 z-10 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-accent"
+            />
+            <div
+              aria-hidden="true"
+              className={`pf-drawing-stack-caption ${
+                isActive ? "pf-drawing-stack-caption-active" : ""
+              }`}
+            >
+              <h3>{item.title}</h3>
+              {isActive && <p>{item.meta}</p>}
+            </div>
+          </motion.article>
+        );
+      })}
+    </div>
+  );
+}
+
 function DesktopScroll({ items, embedded = false }: Props) {
   const [index, setIndex] = useState(0);
   const transition = useSnapTransition();
@@ -218,12 +280,18 @@ function DesktopScroll({ items, embedded = false }: Props) {
       );
     }
 
-    export default function DrawingsCoverflow({ items, embedded = false }: Props) {
-      const isDesktop = useIsDesktop();
+export default function DrawingsCoverflow({ items, embedded = false }: Props) {
+  const isDesktop = useIsDesktop();
 
-      return isDesktop ? (
-        <DesktopScroll items={items} embedded={embedded} />
-      ) : (
+  if (isDesktop) return <DesktopScroll items={items} embedded={embedded} />;
+  return (
+    <>
+      <div className="pf-mobile-stack-view h-full min-h-0">
+        <MobileStack items={items} />
+      </div>
+      <div className="pf-mobile-swipe-view h-full min-h-0">
         <MobileSwipe items={items} embedded={embedded} />
-      );
-        }
+      </div>
+    </>
+  );
+}

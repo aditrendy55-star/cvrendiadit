@@ -205,7 +205,7 @@ export default function Skills() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.15 }}
         transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.18 }}
-        className="relative mx-auto min-h-[670px] max-w-7xl overflow-visible sm:min-h-[690px]"
+        className="relative mx-auto min-h-[670px] max-w-7xl overflow-x-clip overflow-y-visible sm:min-h-[690px]"
       >
         <div className="origin-top" style={{ transform: "scale(0.92)" }}>
           <motion.div

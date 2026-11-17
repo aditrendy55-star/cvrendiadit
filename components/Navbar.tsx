@@ -62,7 +62,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
+      className={`sticky top-3 z-50 mx-3 mt-3 overflow-hidden rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300 md:top-0 md:mx-0 md:mt-0 md:rounded-none md:border-x-0 md:border-t-0 md:border-b ${
         scrolled
           ? "border-line bg-background/95 shadow-[0_1px_0_0_rgba(251,191,36,0.12)] backdrop-blur-lg"
           : "border-line/50 bg-background/75 backdrop-blur-md"
@@ -78,7 +78,7 @@ export default function Navbar() {
         WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 80%)'
       }} />
       <Spotlight size={180} color="rgba(251, 191, 36, 0.15)">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 sm:px-8">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-2.5 sm:px-8">
           <a
             href="#beranda"
             onClick={() => setOpen(false)}

@@ -265,7 +265,9 @@ function SelectableShowcase({
         <div
           role="list"
           aria-label="Proyek pilihan"
-          className="pf-accordion flex h-full min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto lg:overflow-hidden"
+          className={`pf-accordion ${
+            mode === "cards" ? "pf-mobile-card-stack" : ""
+          } flex h-full min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto lg:overflow-hidden`}
         >
           {items.map((item, index) => {
             const isActive = index === activeIndex;
@@ -276,6 +278,7 @@ function SelectableShowcase({
                 layout
                 transition={layoutTransition}
                 role="listitem"
+                data-stack-active={isActive}
                 className={`group relative h-full min-w-0 shrink-0 snap-center overflow-hidden rounded-2xl border bg-zinc-900/80 transition-colors duration-300 ${
                   isActive
                     ? "w-[84%] border-white/25 shadow-[0_24px_64px_-40px_rgba(0,0,0,0.9)] lg:w-auto lg:flex-1"
@@ -364,7 +367,7 @@ function SelectableShowcase({
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center"
                   >
-                    <span className="max-h-[78%] overflow-hidden font-mono text-[10px] uppercase leading-tight tracking-[0.16em] text-white [writing-mode:vertical-rl]">
+                    <span className="pf-stack-collapsed-label max-h-[78%] overflow-hidden font-mono text-[10px] uppercase leading-tight tracking-[0.16em] text-white [writing-mode:vertical-rl]">
                       {item.title}
                     </span>
                   </span>
@@ -562,7 +565,7 @@ export default function PortfolioShowcase() {
     <Section
       id="portofolio"
       className="mt-8 px-4 pt-8 sm:px-6 lg:mt-12 lg:pt-10"
-      containerClassName="max-w-[76rem]"
+      containerClassName="max-w-[76rem] pf-section-container"
       padding="tight"
       withBorder={false}
     >

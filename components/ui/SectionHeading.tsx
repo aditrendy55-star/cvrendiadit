@@ -7,6 +7,7 @@ type SectionHeadingProps = {
   description?: string;
   align?: "left" | "center";
   size?: "default" | "large";
+  mobileCompact?: boolean;
 };
 
 export default function SectionHeading({
@@ -16,13 +17,18 @@ export default function SectionHeading({
   description,
   align = "left",
   size = "default",
+  mobileCompact = false,
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "items-center text-center" : "items-start text-left";
   const titleSize =
     size === "large"
       ? "text-3xl font-extrabold tracking-tighter sm:text-5xl lg:text-6xl"
       : "text-2xl font-bold tracking-tight sm:text-3xl";
-  const marginBottom = size === "large" ? "mb-2 lg:mb-4" : "mb-8 lg:mb-12";
+  const marginBottom = mobileCompact
+    ? "mb-4 md:mb-8 lg:mb-12"
+    : size === "large"
+      ? "mb-2 lg:mb-4"
+      : "mb-8 lg:mb-12";
 
   return (
     <FadeIn
@@ -36,10 +42,17 @@ export default function SectionHeading({
         {index && <span className="text-foreground/40">{index} / </span>}
         {eyebrow}
       </p>
-      <h2 className={`mt-3 max-w-4xl ${titleSize} text-foreground`}>
+      <h2
+        className={`mt-3 max-w-4xl ${titleSize} text-foreground ${
+          mobileCompact ? "sr-only md:not-sr-only" : ""
+        }`}
+      >
         {title}
       </h2>
-      <div className="mt-4 h-px w-16 bg-accent" aria-hidden="true" />
+      <div
+        className={`mt-4 h-px w-16 bg-accent ${mobileCompact ? "hidden md:block" : ""}`}
+        aria-hidden="true"
+      />
       {description && (
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">{description}</p>
       )}
